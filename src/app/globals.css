@@ -2,32 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+img {
+  width: 100%;
+  min-height: 300px;
+  max-height: 550px;
+  height: auto;
+  transition: .5s ease all;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+img:hover {
+  scale: 105%;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.custom-loader {
+  width: 100px;
+  height: 100px;
+  display: grid;
+  border:8px solid #0000;
+  border-radius: 50%;
+  border-color:#687F8D #0000;
+  animation: s6 1s infinite linear;
+}
+.custom-loader::before,
+.custom-loader::after {    
+  content:"";
+  grid-area: 1/1;
+  margin:4px;
+  border:inherit;
+  border-radius: 50%;
+}
+.custom-loader::before {
+  border-color:#F3F0F0 #0000;
+  animation:inherit; 
+  animation-duration: .5s;
+  animation-direction: reverse;
+}
+.custom-loader::after {
+  margin:16px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@keyframes s6 { 
+  100%{transform: rotate(1turn)}
 }
